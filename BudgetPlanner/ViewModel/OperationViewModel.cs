@@ -28,7 +28,6 @@ namespace BudgetPlanner.ViewModel
                 OnPropertyChanged("NewOperation");
             }
         }
-
         public string OperationType
         {
             get
@@ -42,7 +41,6 @@ namespace BudgetPlanner.ViewModel
                 AddCommand.RaisCanExecuteChanged();
             }
         }
-
         public decimal? OperationSum
         {
             get
@@ -56,7 +54,6 @@ namespace BudgetPlanner.ViewModel
                 AddCommand.RaisCanExecuteChanged();
             }
         }
-
         public string Category
         {
             get
@@ -82,9 +79,7 @@ namespace BudgetPlanner.ViewModel
                 OnPropertyChanged("Comment");
             }
         }
-
         public ObservableCollection<OperationModel> Operations { get; set; }
-
         public OperationViewModel()
         {
             NewOperation = new OperationModel();
@@ -101,7 +96,6 @@ namespace BudgetPlanner.ViewModel
 
             
         }
-
         private BaseCommand _addCommand;
         public BaseCommand AddCommand{
             get
@@ -112,8 +106,10 @@ namespace BudgetPlanner.ViewModel
                         obj =>
                         {
                             Operations.Add(_newOperation);
-                            //NewOperation = new OperationModel();
-
+                            OperationType = null;
+                            OperationSum = null;
+                            Category = null;
+                            Comment = null;
                         },
                         obj =>
                         {
