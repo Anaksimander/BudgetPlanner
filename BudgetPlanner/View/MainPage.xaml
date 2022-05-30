@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="BudgetPlanner.MainPage"
+    x:Class="BudgetPlanner.View.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:BudgetPlanner"
@@ -36,7 +36,7 @@
                         <TextBlock FontSize="24" Text="История" />
                     </ListBoxItem>
                     <ListBoxItem Name="adding">
-                        <TextBlock FontSize="24" Text="Добавить" />
+                        <TextBlock FontSize="24" Text="Добавить"/>
                     </ListBoxItem>
                 </ListBox>
             </SplitView.Pane>

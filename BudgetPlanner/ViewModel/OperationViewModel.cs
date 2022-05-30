@@ -12,10 +12,22 @@ namespace BudgetPlanner.ViewModel
 {
     public class OperationViewModel : INotifyPropertyChanged
     {
+        private OperationModel _newOperation;
+        public OperationModel NewOperation {
+            get { 
+                return _newOperation; 
+            }
+            set {
+                _newOperation = value;
+                OnPropertyChanged("NewOperation");
+            } 
+        }
         public ObservableCollection<OperationModel> Operations { get; set; }
 
         public OperationViewModel()
         {
+            NewOperation = new OperationModel { OperationType = "расход", OperationSum = 1000, Category = "заработная плата", Comment = "Для уведомления системы об изменениях свойств модель" };
+
             Operations = new ObservableCollection<OperationModel>
             {
                 new OperationModel {OperationType="доход", OperationSum=1000, Category="заработная плата", Comment= "Для уведомления системы об изменениях свойств модель" },

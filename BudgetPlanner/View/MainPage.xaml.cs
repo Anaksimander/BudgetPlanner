@@ -12,10 +12,11 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using BudgetPlanner.ViewModel;
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x419
 
-namespace BudgetPlanner
+namespace BudgetPlanner.View
 {
     /// <summary>
     /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
@@ -26,19 +27,20 @@ namespace BudgetPlanner
         {
             this.InitializeComponent();
             // по умолчанию открываем страницу home.xaml
-            myFrame.Navigate(typeof(OperationHistory));
+            DataContext = new OperationViewModel();
+            myFrame.Navigate(typeof(OperationHistory), DataContext);
             TitleTextBlock.Text = "История";
         }
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (history.IsSelected)
             {
-                myFrame.Navigate(typeof(OperationHistory));
+                myFrame.Navigate(typeof(OperationHistory), DataContext);
                 TitleTextBlock.Text = "История";
             }
             else if (adding.IsSelected)
             {
-                myFrame.Navigate(typeof(AddingOperation));
+                myFrame.Navigate(typeof(AddingOperation), DataContext);
                 TitleTextBlock.Text = "Добавить";
             }
         }

@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="BudgetPlanner.AddingOperation"
+    x:Class="BudgetPlanner.View.AddingOperation"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:BudgetPlanner"
@@ -34,31 +34,37 @@
     </Page.Resources>
     
     <Grid>
-        <StackPanel Padding="50">
-            <TextBlock
-                Text="Тип операции"/>
-            <ComboBox 
-                Name="operationTypeList" 
-                PlaceholderText="Тип операции">
-                <ComboBoxItem IsSelected="True">
-                    <x:String>доход</x:String>
-                </ComboBoxItem>
-                <x:String>расход</x:String>
-            </ComboBox>
-            <TextBlock
-                Text="Сумма"/>
-            <TextBox
-                Text="0"
-                TextAlignment="Center"/>
-            <TextBlock
-                Text="Категория"/>
-            <TextBox/>
-            <TextBlock
-                Text="Комментарий"/>
-            <TextBox/>
-            <Button
-                Content="Сохранить"
+        <ScrollViewer>
+            <StackPanel Padding="50">
+                <TextBlock
+                    Text="Тип операции"/>
+                <ComboBox 
+                    Name="operationTypeList" 
+                    PlaceholderText="Тип операции"
+                    SelectedItem="{Binding NewOperation.OperationType, Mode=TwoWay}">
+                    <ComboBoxItem>
+                        <x:String>доход</x:String>
+                    </ComboBoxItem>
+                    <x:String>расход</x:String>
+                </ComboBox>
+                <TextBlock
+                    Text="Сумма"/>
+                <TextBox
+                    Text="{Binding NewOperation.OperationSum, Mode=TwoWay}"
+                    TextAlignment="Center"/>
+                <TextBlock
+                    Text="Категория"/>
+                <TextBox 
+                    Text="{Binding NewOperation.Category, Mode=TwoWay}"
+                    TextAlignment="Center"/>
+                <TextBlock
+                    Text="Комментарий"/>
+                <TextBox
+                    Text="{Binding NewOperation.Comment, Mode=TwoWay}"/>
+                <Button
+                    Content="Сохранить"
                 />
-        </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

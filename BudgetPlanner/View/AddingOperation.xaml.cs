@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BudgetPlanner.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,7 +16,7 @@ using Windows.UI.Xaml.Navigation;
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace BudgetPlanner
+namespace BudgetPlanner.View
 {
     /// <summary>
     /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
@@ -25,6 +26,12 @@ namespace BudgetPlanner
         public AddingOperation()
         {
             this.InitializeComponent();
+        }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter is OperationViewModel operationViewModel)
+                this.DataContext = operationViewModel;
+            base.OnNavigatedTo(e);
         }
     }
 }
