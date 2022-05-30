@@ -45,6 +45,13 @@ namespace BudgetPlanner.View
             }
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter is OperationViewModel operationViewModel)
+                this.DataContext = operationViewModel;
+            base.OnNavigatedTo(e);
+        }
+
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
             mySplitView.IsPaneOpen = !mySplitView.IsPaneOpen;

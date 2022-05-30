@@ -11,7 +11,7 @@ namespace BudgetPlanner.Model
     public class OperationModel : INotifyPropertyChanged
     {
         private string _operationType;
-        private decimal _operationSum;
+        private decimal? _operationSum;
         private string _category;
         private string _comment;
         public string OperationType{
@@ -25,8 +25,7 @@ namespace BudgetPlanner.Model
                 OnPropertyChanged("OperationType");
             }
         }
-
-        public decimal OperationSum{
+        public decimal? OperationSum{
             get
             {
                 return _operationSum;
@@ -37,7 +36,6 @@ namespace BudgetPlanner.Model
                 OnPropertyChanged("OperationSum");
             }
         }
-
         public string Category {
             get
             {
@@ -60,6 +58,7 @@ namespace BudgetPlanner.Model
                 OnPropertyChanged("Comment");
             }
         }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

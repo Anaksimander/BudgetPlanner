@@ -6,6 +6,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:l="using:BudgetPlanner.Converters"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
@@ -31,6 +34,7 @@
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="Margin" Value="0 40"/>
         </Style>
+        <l:ConverterDecimal x:Key="DecimalToString"/>
     </Page.Resources>
     
     <Grid>
@@ -41,7 +45,8 @@
                 <ComboBox 
                     Name="operationTypeList" 
                     PlaceholderText="Тип операции"
-                    SelectedItem="{Binding NewOperation.OperationType, Mode=TwoWay}">
+                    SelectedItem="{Binding OperationType, Mode=TwoWay, 
+                    UpdateSourceTrigger=PropertyChanged}">
                     <ComboBoxItem>
                         <x:String>доход</x:String>
                     </ComboBoxItem>
@@ -50,20 +55,28 @@
                 <TextBlock
                     Text="Сумма"/>
                 <TextBox
-                    Text="{Binding NewOperation.OperationSum, Mode=TwoWay}"
+                    x:Name="SumBox"
+                    Text="{Binding OperationSum, Mode=TwoWay, Converter={StaticResource DecimalToString},
+                    UpdateSourceTrigger=PropertyChanged}"
                     TextAlignment="Center"/>
                 <TextBlock
                     Text="Категория"/>
                 <TextBox 
-                    Text="{Binding NewOperation.Category, Mode=TwoWay}"
+                    Text="{Binding Category, Mode=TwoWay, 
+                    UpdateSourceTrigger=PropertyChanged}"
                     TextAlignment="Center"/>
                 <TextBlock
                     Text="Комментарий"/>
                 <TextBox
-                    Text="{Binding NewOperation.Comment, Mode=TwoWay}"/>
+                    Text="{Binding Comment, Mode=TwoWay, 
+                    UpdateSourceTrigger=PropertyChanged}"/>
                 <Button
+                    x:Name="SaveBtn"
+                    Command="{Binding AddCommand }"
                     Content="Сохранить"
-                />
+                    >
+                    <!--Visibility="{Binding SaveReady, Converter={StaticResource boolToVisible}}"-->
+                </Button>
             </StackPanel>
         </ScrollViewer>
     </Grid>

@@ -116,6 +116,8 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BaseCommand.cs" />
+    <Compile Include="Converters\ConverterDecimal.cs" />
     <Compile Include="View\AddingOperation.xaml.cs">
       <DependentUpon>AddingOperation.xaml</DependentUpon>
     </Compile>
@@ -168,6 +170,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.13</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
+      <Version>2.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup />

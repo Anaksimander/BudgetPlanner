@@ -27,11 +27,5 @@ namespace BudgetPlanner.View
         {
             this.InitializeComponent();
         }
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            if (e.Parameter is OperationViewModel operationViewModel)
-                this.DataContext = operationViewModel;
-            base.OnNavigatedTo(e);
-        }
     }
 }
