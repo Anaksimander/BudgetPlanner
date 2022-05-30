@@ -8,82 +8,57 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 30"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Margin" Value="0 40"/>
+        </Style>
+    </Page.Resources>
+    
     <Grid>
-        <Border Padding="10 5 10 10"
-                BorderBrush="Gray"
-                BorderThickness="1"
-                VerticalAlignment="Center">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="5*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <TextBlock
-                    TextWrapping="WrapWholeWords"
-                    Grid.Column="0"
-                    Grid.Row="0"
-                    Text="Тип операции"
-                    FontWeight="SemiBold"
-                    FontSize="20"
-                        />
-                <TextBlock
-                    Grid.Column="1"
-                    Grid.Row="0"
-                    Text="Сумма"
-                    FontWeight="SemiBold"
-                    FontSize="20"
-                        />
-                <TextBlock
-                    Grid.Column="2"
-                    Grid.Row="0"
-                    Text="Категория"
-                    FontWeight="SemiBold"
-                    FontSize="20"
-                    />
-                <TextBlock
-                    Grid.Column="3"
-                    Grid.Row="0"
-                    Text="Комментарий"
-                    FontWeight="SemiBold"
-                    FontSize="20"
-                    />
-
-                <TextBlock
-                    TextWrapping="WrapWholeWords"
-                    Grid.Column="0"
-                    Grid.Row="1"
-                    Text="Тип операции"
-                    FontWeight="SemiBold"
-                    FontSize="20"
-                        />
-                <TextBlock
-                    Grid.Column="1"
-                    Grid.Row="1"
-                    Text="Сумма"
-                    FontWeight="SemiBold"
-                    FontSize="20"
-                        />
-                <TextBlock
-                    Grid.Column="2"
-                    Grid.Row="1"
-                    Text="Категория"
-                    FontWeight="SemiBold"
-                    FontSize="20"
-                    />
-                <TextBlock
-                    Grid.Column="3"
-                    Grid.Row="1"
-                    Text="Комментарий"
-                    FontWeight="SemiBold"
-                    FontSize="20"
-                    />
-            </Grid>
-        </Border>
+        <StackPanel Padding="50">
+            <TextBlock
+                Text="Тип операции"/>
+            <ComboBox 
+                Name="operationTypeList" 
+                PlaceholderText="Тип операции">
+                <ComboBoxItem IsSelected="True">
+                    <x:String>доход</x:String>
+                </ComboBoxItem>
+                <x:String>расход</x:String>
+            </ComboBox>
+            <TextBlock
+                Text="Сумма"/>
+            <TextBox
+                Text="0"
+                TextAlignment="Center"/>
+            <TextBlock
+                Text="Категория"/>
+            <TextBox/>
+            <TextBlock
+                Text="Комментарий"/>
+            <TextBox/>
+            <Button
+                Content="Сохранить"
+                />
+        </StackPanel>
     </Grid>
 </Page>

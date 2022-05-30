@@ -27,19 +27,19 @@ namespace BudgetPlanner
             this.InitializeComponent();
             // по умолчанию открываем страницу home.xaml
             myFrame.Navigate(typeof(OperationHistory));
-            TitleTextBlock.Text = "Главная";
+            TitleTextBlock.Text = "История";
         }
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (history.IsSelected)
             {
                 myFrame.Navigate(typeof(OperationHistory));
-                TitleTextBlock.Text = "Главная";
+                TitleTextBlock.Text = "История";
             }
             else if (adding.IsSelected)
             {
                 myFrame.Navigate(typeof(AddingOperation));
-                TitleTextBlock.Text = "Поделиться";
+                TitleTextBlock.Text = "Добавить";
             }
         }
 
