@@ -15,7 +15,6 @@ namespace BudgetPlanner.Converters
             if (!(value is decimal))
                 return DependencyProperty.UnsetValue;
 
-
             return ((decimal)value).ToString();
         }
 
@@ -26,6 +25,14 @@ namespace BudgetPlanner.Converters
 
             if ((string)value == "")
                 return null;
+
+            //Сюда положим распарсенное число
+            //if (decimal.TryParse((string)value, out decimal number) && number >= 0)
+            //{
+            //    prevvalue = t.Text;
+            //    prevselectionstart = t.SelectionStart;
+            //    prevselectionend = t.SelectionLength;
+            //}
 
             return decimal.Parse(((string)value));
         }

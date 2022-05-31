@@ -45,7 +45,7 @@
                 <ComboBox 
                     Name="operationTypeList" 
                     PlaceholderText="Тип операции"
-                    SelectedItem="{Binding OperationType, Mode=TwoWay, 
+                    SelectedItem="{Binding NewOperation.OperationType, Mode=TwoWay, 
                     UpdateSourceTrigger=PropertyChanged}">
                     <x:String>доход</x:String>
                     <x:String>расход</x:String>
@@ -54,19 +54,19 @@
                     Text="Сумма"/>
                 <TextBox
                     x:Name="SumBox"
-                    Text="{Binding OperationSum, Mode=TwoWay, Converter={StaticResource DecimalToString},
+                    Text="{Binding NewOperation.OperationSum, Mode=TwoWay, Converter={StaticResource DecimalToString},
                     UpdateSourceTrigger=PropertyChanged}"
                     TextAlignment="Center"/>
                 <TextBlock
                     Text="Категория"/>
                 <TextBox 
-                    Text="{Binding Category, Mode=TwoWay, 
+                    Text="{Binding NewOperation.Category, Mode=TwoWay, 
                     UpdateSourceTrigger=PropertyChanged}"
                     TextAlignment="Center"/>
                 <TextBlock
                     Text="Комментарий"/>
                 <TextBox
-                    Text="{Binding Comment, Mode=TwoWay, 
+                    Text="{Binding NewOperation.Comment, Mode=TwoWay, 
                     UpdateSourceTrigger=PropertyChanged}"/>
                 <Button
                     x:Name="SaveBtn"

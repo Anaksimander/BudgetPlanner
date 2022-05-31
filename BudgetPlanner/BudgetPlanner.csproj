@@ -118,6 +118,7 @@
   <ItemGroup>
     <Compile Include="BaseCommand.cs" />
     <Compile Include="Converters\ConverterDecimal.cs" />
+    <Compile Include="DataBaseWorker.cs" />
     <Compile Include="View\AddingOperation.xaml.cs">
       <DependentUpon>AddingOperation.xaml</DependentUpon>
     </Compile>

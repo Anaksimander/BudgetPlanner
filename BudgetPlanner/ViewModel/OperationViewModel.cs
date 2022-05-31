@@ -26,6 +26,7 @@ namespace BudgetPlanner.ViewModel
             {
                 _newOperation = value;
                 OnPropertyChanged("NewOperation");
+                AddCommand.RaisCanExecuteChanged();
             }
         }
         public string OperationType
@@ -106,15 +107,18 @@ namespace BudgetPlanner.ViewModel
                         obj =>
                         {
                             Operations.Add(_newOperation);
-                            OperationType = null;
-                            OperationSum = null;
-                            Category = null;
-                            Comment = null;
+                            NewOperation = new OperationModel();
+                            //OnPropertyChanged("OperationType");
+                            //OnPropertyChanged("OperationSum");
+                            //OnPropertyChanged("Category");
+                            //OnPropertyChanged("Comment");
                         },
                         obj =>
                         {
-                            if (Category == null || OperationSum == null || OperationType == null ||
-                            Category == ""  || OperationType == "")
+                            //if (Category == null || OperationSum == null || OperationType == null ||
+                            //Category == ""  || OperationType == "")
+                            if (NewOperation.Category == null || NewOperation.OperationSum == null || NewOperation.OperationType == null ||
+                            NewOperation.Category == "" || NewOperation.OperationType == "")
                                 return false;
                             else
                             {
@@ -125,6 +129,8 @@ namespace BudgetPlanner.ViewModel
                 }
             }
         }
+
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
