@@ -21,8 +21,11 @@ namespace BudgetPlanner.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            if (!(value is string))
+            if (!(value is string) )
                 return DependencyProperty.UnsetValue;
+
+            if ((string)value == "")
+                return null;
 
             return decimal.Parse(((string)value));
         }

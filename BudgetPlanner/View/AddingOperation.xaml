@@ -47,9 +47,7 @@
                     PlaceholderText="Тип операции"
                     SelectedItem="{Binding OperationType, Mode=TwoWay, 
                     UpdateSourceTrigger=PropertyChanged}">
-                    <ComboBoxItem>
-                        <x:String>доход</x:String>
-                    </ComboBoxItem>
+                    <x:String>доход</x:String>
                     <x:String>расход</x:String>
                 </ComboBox>
                 <TextBlock
