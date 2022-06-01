@@ -10,11 +10,23 @@ namespace BudgetPlanner.Model
 {
     public class OperationModel : INotifyPropertyChanged/*, IDataErrorInfo*/
     {
+        private int _operationId;
         private string _operationType;
         private decimal? _operationSum;
         private string _category;
         private string _comment;
-        public int OperationId { get; set; }
+        public int OperationId
+        {
+            get
+            {
+                return _operationId;
+            }
+            set
+            {
+                _operationId = value;
+                OnPropertyChanged();
+            }
+        }
         public string OperationType{
             get
             {

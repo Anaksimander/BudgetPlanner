@@ -17,21 +17,7 @@ namespace BudgetPlanner.ViewModel
         DataBaseWorker bd;
 
         private OperationModel _newOperation;
-        private OperationModel _selectedOperation;
         public OperationModel NewOperation
-        {
-            get
-            {
-                return _newOperation;
-            }
-            set
-            {
-                _newOperation = value;
-                OnPropertyChanged();
-                AddCommand.RaisCanExecuteChanged();
-            }
-        }
-        public OperationModel SelectedOperation
         {
             get
             {
@@ -104,42 +90,47 @@ namespace BudgetPlanner.ViewModel
         {
             AddCommand = new BaseCommand(AddOperation, CanAddOperation);
             NewOperation = new OperationModel();
-            Operations = new ObservableCollection<OperationModel>
-            {
-                new OperationModel {OperationType="доход", OperationSum=1000, Category="заработная плата", Comment= "Для уведомления системы об изменениях свойств модель" },
-                new OperationModel {OperationType="доход", OperationSum=1000, Category="возврат долга", Comment= "Для уведомления системы об изменениях свойств модель" },
-                new OperationModel {OperationType="доход", OperationSum=1000, Category="дивиденды", Comment= "Для уведомления системы об изменениях свойств модель" },
-                new OperationModel {OperationType="расход", OperationSum=100, Category="транспорт", Comment= "Для уведомления системы об изменениях свойств модель" },
-                new OperationModel {OperationType="расход", OperationSum=100, Category="еда", Comment= "Для уведомления системы об изменениях свойств модель" },
-                new OperationModel {OperationType="расход", OperationSum=100, Category="развлечения", Comment= "Для уведомления системы об изменениях свойств модель" }
-            };
-            //bd = new DataBaseWorker();
-            //bd.OpentConection();
-            //List<string[]> list = bd.ExecuteQuery($"SELECT operationId, operationType, operationSum, category, comment FROM Operations", 5);
+            //Operations = new ObservableCollection<OperationModel>
+            //{
+            //    new OperationModel {OperationType="доход", OperationSum=1000, Category="заработная плата", Comment= "Для уведомления системы об изменениях свойств модель" },
+            //    new OperationModel {OperationType="доход", OperationSum=1000, Category="возврат долга", Comment= "Для уведомления системы об изменениях свойств модель" },
+            //    new OperationModel {OperationType="доход", OperationSum=1000, Category="дивиденды", Comment= "Для уведомления системы об изменениях свойств модель" },
+            //    new OperationModel {OperationType="расход", OperationSum=100, Category="транспорт", Comment= "Для уведомления системы об изменениях свойств модель" },
+            //    new OperationModel {OperationType="расход", OperationSum=100, Category="еда", Comment= "Для уведомления системы об изменениях свойств модель" },
+            //    new OperationModel {OperationType="расход", OperationSum=100, Category="развлечения", Comment= "Для уведомления системы об изменениях свойств модель" }
+            //};
+            bd = new DataBaseWorker();
+            bd.OpentConection();
+            List<string[]> list = bd.ExecuteQuery($"SELECT operationId, operationType, operationSum, category, comment FROM Operations", 5);
 
-            //if (list != null)
-            //{
-            //    IEnumerable<OperationModel> collection = list.Select(
-            //    (x) =>
-            //    {
-            //        return new OperationModel()
-            //        {
-            //            OperationId = int.Parse(x[0]),
-            //            OperationType = x[1],
-            //            OperationSum = decimal.Parse(x[2]),
-            //            Category = x[3],
-            //            Comment = x[4]
-            //        };
-            //    });
-            //    Operations = new ObservableCollection<OperationModel>(collection);
-            //}
-            //else
-            //{
-            //    Operations = new ObservableCollection<OperationModel>();
-            //}
+            if (list != null)
+            {
+                IEnumerable<OperationModel> collection = list.Select(
+                (x) =>
+                {
+                    return new OperationModel()
+                    {
+                        OperationId = int.Parse(x[0]),
+                        OperationType = x[1],
+                        OperationSum = decimal.Parse(x[2]),
+                        Category = x[3],
+                        Comment = x[4]
+                    };
+                });
+                Operations = new ObservableCollection<OperationModel>(collection);
+            }
+            else
+            {
+                Operations = new ObservableCollection<OperationModel>();
+            }
         }
 
         public BaseCommand AddCommand{
+            get;
+        }
+
+        public BaseCommand SaveCommand
+        {
             get;
         }
 

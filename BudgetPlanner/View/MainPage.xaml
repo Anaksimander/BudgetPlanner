@@ -28,15 +28,22 @@
                        Margin="30 5 0 0" />
         </RelativePanel>
 
-        <SplitView Name="mySplitView" Grid.Row="1" OpenPaneLength="200">
+        <SplitView Name="mySplitView" Grid.Row="1" OpenPaneLength="200"
+                   DisplayMode="CompactOverlay" CompactPaneLength="56">
             <SplitView.Pane>
                 <ListBox SelectionMode="Single" 
                          SelectionChanged="ListBox_SelectionChanged">
                     <ListBoxItem Name="history">
-                        <TextBlock FontSize="24" Text="История" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontSize="36" FontFamily="Segoe MDL2 Assets" Text="&#xF738;"/>
+                            <TextBlock FontSize="24" Text="История" Margin="10 0 0 0"/>
+                        </StackPanel>
                     </ListBoxItem>
                     <ListBoxItem Name="adding">
-                        <TextBlock FontSize="24" Text="Добавить"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontSize="36" FontFamily="Segoe MDL2 Assets" Text="&#xE710;" />
+                            <TextBlock FontSize="24" Text="Добавить" Margin="10 0 0 0"/>
+                        </StackPanel>
                     </ListBoxItem>
                 </ListBox>
             </SplitView.Pane>

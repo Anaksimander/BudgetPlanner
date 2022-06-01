@@ -39,13 +39,13 @@
     
     <Grid>
         <ScrollViewer>
-            <StackPanel Padding="50">
+            <StackPanel Padding="50 0">
                 <TextBlock
                     Text="Тип операции"/>
                 <ComboBox 
                     Name="operationTypeList" 
                     PlaceholderText="Тип операции"
-                    SelectedItem="{Binding OperationType, Mode=TwoWay, 
+                    ItemTemplateSelector="{Binding OperationType, Mode=TwoWay, 
                     UpdateSourceTrigger=PropertyChanged}">
                     <x:String>доход</x:String>
                     <x:String>расход</x:String>
@@ -76,7 +76,8 @@
                     UpdateSourceTrigger=PropertyChanged}"
                     MaxLength="100"
                     TextWrapping="Wrap"
-                    ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                    TextAlignment="Left"/>
                 <Button
                     x:Name="SaveBtn"
                     Command="{Binding AddCommand }"

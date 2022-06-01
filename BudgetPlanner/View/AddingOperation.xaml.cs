@@ -29,6 +29,12 @@ namespace BudgetPlanner.View
             this.InitializeComponent();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter is OperationViewModel operationViewModel)
+                this.DataContext = operationViewModel;
+            base.OnNavigatedTo(e);
+        }
 
         ///уверен что это делается как-то элементарно - но я не смог понять как сделать валидатор как в wpf
         private void SumBox_TextChanging(TextBox sender, TextBoxTextChangingEventArgs args)

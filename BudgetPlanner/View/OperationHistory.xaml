@@ -10,12 +10,12 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     MinWidth="800">
 
-    <Page.DataContext>
+    <!--<Page.DataContext>
         <vm:OperationViewModel/>
-    </Page.DataContext>
+    </Page.DataContext>-->
 
     <Page.Resources>
-        <Style TargetType="TextBlock" x:Key="baseBloc">
+        <Style TargetType="TextBlock" x:Key="baseBlock">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="TextAlignment" Value="Center"/>
@@ -24,17 +24,16 @@
         <Style TargetType="TextBox">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="TextAlignment" Value="Center"/>
         </Style>
         <Style TargetType="ComboBox">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="FontSize" Value="25"/>
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="Margin" Value="0 40"/>
+            <Setter Property="Margin" Value="20 0"/>
+            <Setter Property="BorderThickness" Value="0"/>
         </Style>
     </Page.Resources>
 
@@ -46,25 +45,26 @@
                     MinWidth="500">
                 <Grid>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
                         <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
                         <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock
-                        Style="{StaticResource baseBloc}"
+                        Style="{StaticResource baseBlock}"
                         Grid.Column="0"
                         Text="Тип операции"/>
                     <TextBlock
-                        Style="{StaticResource baseBloc}"
+                        Style="{StaticResource baseBlock}"
                         Grid.Column="1"
                         Text="Сумма"/>
                     <TextBlock
-                        Style="{StaticResource baseBloc}"
+                        Style="{StaticResource baseBlock}"
                         Grid.Column="2"
                         Text="Категория"/>
                     <TextBlock
-                        Style="{StaticResource baseBloc}"
+                        Style="{StaticResource baseBlock}"
                         Grid.Column="3"
                         Text="Комментарий"/>
                 </Grid>
@@ -88,34 +88,52 @@
                             BorderThickness="1">
                             <Grid>
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"/>
                                     <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="3*"/>
                                     <ColumnDefinition Width="4*"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock
-                                    Style="{StaticResource baseBloc}"
+                                <ComboBox
                                     Grid.Column="0"
-                                    Text="{Binding OperationType}"
-                                    FontWeight="SemiBold"/>
-                                <TextBlock
-                                    Style="{StaticResource baseBloc}"
+                                    PlaceholderText="{Binding OperationType, Mode=TwoWay, 
+                                    UpdateSourceTrigger=PropertyChanged}"
+                                    SelectedItem="{Binding OperationType, Mode=TwoWay, 
+                                    UpdateSourceTrigger=PropertyChanged}">
+                                    <x:String>расход</x:String>
+                                    <x:String>доход</x:String>
+                                </ComboBox>
+                                <TextBox
+                                    x:Name="SumBox"
+                                    TextChanging="SumBox_TextChanging"
                                     Grid.Column="1"
-                                    Text="{Binding OperationSum}"
+                                    Text="{Binding OperationSum, Mode=TwoWay, 
+                                    UpdateSourceTrigger=PropertyChanged}"
                                     FontWeight="SemiBold"/>
-                                <TextBlock
-                                    Style="{StaticResource baseBloc}"
+                                <TextBox
                                     Grid.Column="2"
-                                    Text="{Binding Category}"
+                                    MaxLength="50"
+                                    Text="{Binding Category, Mode=TwoWay,                                
+                                    UpdateSourceTrigger=PropertyChanged}"
                                     FontWeight="SemiBold"
                                     TextWrapping="Wrap"
                                     ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-                                <TextBlock
-                                    Style="{StaticResource baseBloc}"
+                                <TextBox
                                     Grid.Column="3"
-                                    Text="{Binding Comment}"
+                                    MaxLength="100"
+                                    Text="{Binding Comment, Mode=TwoWay, 
+                                    UpdateSourceTrigger=PropertyChanged}"
                                     TextWrapping="Wrap"
-                                    ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                    TextAlignment="Left"/>
+                                <Button
+                                    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                                    Grid.Column="4"
+                                    FontFamily="Segoe MDL2 Assets" 
+                                    Content="&#xE74E;"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="20"/>
                             </Grid>
                         </Border>
                     </DataTemplate>
