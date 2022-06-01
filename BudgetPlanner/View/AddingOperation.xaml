@@ -44,7 +44,7 @@
                     Text="Тип операции"/>
                 <ComboBox 
                     Name="operationTypeList" 
-                    PlaceholderText="Тип операции"
+                    PlaceholderText="Выберите тип операции"
                     ItemTemplateSelector="{Binding OperationType, Mode=TwoWay, 
                     UpdateSourceTrigger=PropertyChanged}">
                     <x:String>доход</x:String>
@@ -54,6 +54,7 @@
                     Text="Сумма"/>
                 <TextBox
                     x:Name="SumBox"
+                    PlaceholderText="Введите сумму"
                     Text="{Binding OperationSum, Mode=TwoWay, 
                     Converter={StaticResource DecimalToString},
                     UpdateSourceTrigger=PropertyChanged}"
@@ -65,6 +66,7 @@
                 <TextBox 
                     Text="{Binding Category, Mode=TwoWay, 
                     UpdateSourceTrigger=PropertyChanged}"
+                    PlaceholderText="Введите категорию"
                     MaxLength="50"
                     TextAlignment="Center"
                     TextWrapping="Wrap"
@@ -74,10 +76,11 @@
                 <TextBox
                     Text="{Binding Comment, Mode=TwoWay, 
                     UpdateSourceTrigger=PropertyChanged}"
+                    PlaceholderText="необязательно"
                     MaxLength="100"
                     TextWrapping="Wrap"
                     ScrollViewer.VerticalScrollBarVisibility="Auto"
-                    TextAlignment="Left"/>
+                    TextAlignment="Center"/>
                 <Button
                     x:Name="SaveBtn"
                     Command="{Binding AddCommand }"

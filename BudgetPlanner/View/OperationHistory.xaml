@@ -41,6 +41,26 @@
 
     <ScrollViewer>
         <StackPanel>
+            <StackPanel>
+                <TextBlock 
+                    HorizontalAlignment="Left"
+                    Style="{StaticResource baseBlock}"
+                    Text="Для сохранения выберите строку"/>
+                <Button
+                    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                    Command="{Binding SaveCommand}"
+                    CommandParameter="{Binding SelectedOperation}"
+                    Grid.Column="4"
+                    FontFamily="Segoe MDL2 Assets" 
+                    Content="&#xE74E;"
+                    HorizontalAlignment="Left"
+                    Margin="10 5 20 10"
+                    FontSize="30"/>
+                
+            </StackPanel>
+            
+
+
             <Border Padding="10 5 10 10"
                     BorderBrush="Gray"
                     BorderThickness="1"
@@ -72,16 +92,7 @@
                 </Grid>
             </Border>
             
-            <Button
-                Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                Command="{Binding SaveCommand}"
-                CommandParameter="{Binding SelectedOperation}"
-                Grid.Column="4"
-                FontFamily="Segoe MDL2 Assets" 
-                Content="&#xE74E;"
-                HorizontalAlignment="Right"
-                Margin="10 5 20 10"
-                FontSize="30"/>
+           
 
             <ListView 
                 SelectedItem="{Binding SelectedOperation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
