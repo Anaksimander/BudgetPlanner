@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using BudgetPlanner.View;
+using Windows.UI.ViewManagement;
 
 namespace BudgetPlanner
 {
@@ -40,6 +41,7 @@ namespace BudgetPlanner
         /// <param name="e">Сведения о запросе и обработке запуска.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Не повторяйте инициализацию приложения, если в окне уже имеется содержимое,
@@ -58,6 +60,8 @@ namespace BudgetPlanner
 
                 // Размещение фрейма в текущем окне
                 Window.Current.Content = rootFrame;
+
+                
             }
 
             if (e.PrelaunchActivated == false)
@@ -70,6 +74,9 @@ namespace BudgetPlanner
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 }
                 // Обеспечение активности текущего окна
+                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+                ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(800, 300));
+
                 Window.Current.Activate();
             }
         }

@@ -26,8 +26,9 @@ namespace BudgetPlanner.View
         public MainPage()
         {
             this.InitializeComponent();
-            // по умолчанию открываем страницу home.xaml
+
             DataContext = new OperationViewModel();
+            // по умолчанию открываем страницу
             myFrame.Navigate(typeof(OperationHistory), DataContext);
             TitleTextBlock.Text = "История";
         }

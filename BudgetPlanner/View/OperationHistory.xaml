@@ -7,54 +7,72 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    MinWidth="800">
 
-    <!--<Page.DataContext>
+    <Page.DataContext>
         <vm:OperationViewModel/>
-    </Page.DataContext>-->
+    </Page.DataContext>
 
+    <Page.Resources>
+        <Style TargetType="TextBlock" x:Key="baseBloc">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Margin" Value="0 40"/>
+        </Style>
+    </Page.Resources>
 
     <ScrollViewer>
         <StackPanel>
             <Border Padding="10 5 10 10"
-                BorderBrush="Gray"
-                BorderThickness="1">
+                    BorderBrush="Gray"
+                    BorderThickness="1"
+                    MinWidth="500">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock
+                        Style="{StaticResource baseBloc}"
                         Grid.Column="0"
-                        Text="Тип операции"
-                        FontWeight="SemiBold"
-                        FontSize="20"
-                        />
+                        Text="Тип операции"/>
                     <TextBlock
+                        Style="{StaticResource baseBloc}"
                         Grid.Column="1"
-                        Text="Сумма"
-                        FontWeight="SemiBold"
-                        FontSize="20"
-                        />
+                        Text="Сумма"/>
                     <TextBlock
+                        Style="{StaticResource baseBloc}"
                         Grid.Column="2"
-                        Text="Категория"
-                        FontWeight="SemiBold"
-                        FontSize="20"
-                        />
+                        Text="Категория"/>
                     <TextBlock
+                        Style="{StaticResource baseBloc}"
                         Grid.Column="3"
-                        Text="Комментарий"
-                        FontWeight="SemiBold"
-                        FontSize="20"
-                        />
+                        Text="Комментарий"/>
                 </Grid>
             </Border>
+
+
             <ListView ItemsSource="{Binding Operations}"
                   HorizontalAlignment="Stretch">
-
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -62,7 +80,7 @@
                         <Setter Property="Padding" Value="0"/>
                     </Style>
                 </ListView.ItemContainerStyle>
-
+              
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border Padding="10 5 10 10"
@@ -70,39 +88,34 @@
                             BorderThickness="1">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="4*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock
+                                    Style="{StaticResource baseBloc}"
                                     Grid.Column="0"
                                     Text="{Binding OperationType}"
-                                    FontWeight="SemiBold"
-                                    FontSize="20"
-                                    />
+                                    FontWeight="SemiBold"/>
                                 <TextBlock
+                                    Style="{StaticResource baseBloc}"
                                     Grid.Column="1"
                                     Text="{Binding OperationSum}"
-                                    FontWeight="SemiBold"
-                                    FontSize="20"
-
-                                    />
+                                    FontWeight="SemiBold"/>
                                 <TextBlock
+                                    Style="{StaticResource baseBloc}"
                                     Grid.Column="2"
                                     Text="{Binding Category}"
                                     FontWeight="SemiBold"
-                                    FontSize="20"
                                     TextWrapping="Wrap"
-                                    ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                    />
+                                    ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                                 <TextBlock
+                                    Style="{StaticResource baseBloc}"
                                     Grid.Column="3"
                                     Text="{Binding Comment}"
-                                    FontSize="12"
                                     TextWrapping="Wrap"
-                                    ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                    />
+                                    ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                             </Grid>
                         </Border>
                     </DataTemplate>

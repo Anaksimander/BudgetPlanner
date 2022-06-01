@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using BudgetPlanner.ViewModel;
+using Windows.UI.ViewManagement;
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -26,7 +27,8 @@ namespace BudgetPlanner.View
         public OperationHistory()
         {
             this.InitializeComponent();
-            
+
+
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
