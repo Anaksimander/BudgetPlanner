@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace RegApp
+namespace BudgetPlanner
 {
     internal class DataBaseWorker
     {
         private readonly string connectionString;
         private SqlConnection connection;
-        private static string bd_name = "operationBd";
+        private static string db_name = "OperationBd";
         
 
         public DataBaseWorker()
         {
-            connectionString = $"Server=localhost;Database={bd_name};Trusted_Connection=True;";
+            connectionString = $"Server=DESKTOP-FP7JDD8;Database={db_name};User Id=sasha;Password=sasha;";
         }
 
         public void OpentConection()

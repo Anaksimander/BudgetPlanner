@@ -93,12 +93,15 @@
                                     Text="{Binding Category}"
                                     FontWeight="SemiBold"
                                     FontSize="20"
+                                    TextWrapping="Wrap"
+                                    ScrollViewer.VerticalScrollBarVisibility="Auto"
                                     />
                                 <TextBlock
                                     Grid.Column="3"
                                     Text="{Binding Comment}"
                                     FontSize="12"
-                                    TextWrapping="WrapWholeWords"
+                                    TextWrapping="Wrap"
+                                    ScrollViewer.VerticalScrollBarVisibility="Auto"
                                     />
                             </Grid>
                         </Border>
