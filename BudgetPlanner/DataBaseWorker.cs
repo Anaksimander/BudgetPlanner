@@ -35,6 +35,7 @@ namespace BudgetPlanner
             {
                 Console.WriteLine("неполучилось открыть бд");
                 Console.WriteLine(ex.Message);
+                throw ex;
             }
         }
 

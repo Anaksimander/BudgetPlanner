@@ -106,39 +106,43 @@ namespace BudgetPlanner.ViewModel
             SaveCommand = new BaseCommand(SaveOperation, CanSaveOperation);
             NewOperation = new OperationModel();
             _selectedOperation = new OperationModel();
-            //Operations = new ObservableCollection<OperationModel>
-            //{
-            //    new OperationModel {OperationType="доход", OperationSum=1000, Category="заработная плата", Comment= "Для уведомления системы об изменениях свойств модель" },
-            //    new OperationModel {OperationType="доход", OperationSum=1000, Category="возврат долга", Comment= "Для уведомления системы об изменениях свойств модель" },
-            //    new OperationModel {OperationType="доход", OperationSum=1000, Category="дивиденды", Comment= "Для уведомления системы об изменениях свойств модель" },
-            //    new OperationModel {OperationType="расход", OperationSum=100, Category="транспорт", Comment= "Для уведомления системы об изменениях свойств модель" },
-            //    new OperationModel {OperationType="расход", OperationSum=100, Category="еда", Comment= "Для уведомления системы об изменениях свойств модель" },
-            //    new OperationModel {OperationType="расход", OperationSum=100, Category="развлечения", Comment= "Для уведомления системы об изменениях свойств модель" }
-            //};
-            bd = new DataBaseWorker();
-            bd.OpentConection();
-            List<string[]> list = bd.ExecuteQuery($"SELECT operationId, operationType, operationSum, category, comment FROM Operations", 5);
 
-            if (list != null)
+            bd = new DataBaseWorker();
+            try
             {
-                IEnumerable<OperationModel> collection = list.Select(
-                (x) =>
+                bd.OpentConection();
+
+                List<string[]> list = bd.ExecuteQuery($"SELECT operationId, operationType, operationSum, category, comment FROM Operations", 5);
+
+                if (list != null)
                 {
-                    return new OperationModel()
+                    IEnumerable<OperationModel> collection = list.Select(
+                    (x) =>
                     {
-                        OperationId = int.Parse(x[0]),
-                        OperationType = x[1],
-                        OperationSum = decimal.Parse(x[2]),
-                        Category = x[3],
-                        Comment = x[4]
-                    };
-                });
-                Operations = new ObservableCollection<OperationModel>(collection);
+                        return new OperationModel()
+                        {
+                            OperationId = int.Parse(x[0]),
+                            OperationType = x[1],
+                            OperationSum = decimal.Parse(x[2]),
+                            Category = x[3],
+                            Comment = x[4]
+                        };
+                    });
+                    Operations = new ObservableCollection<OperationModel>(collection);
+                }
+                else
+                {
+                    Operations = new ObservableCollection<OperationModel>();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Operations = new ObservableCollection<OperationModel>();
+
+                Console.WriteLine("неполучилось открыть бд");
+                Console.WriteLine(ex.Message);
             }
+            
+            
         }
 
         public BaseCommand AddCommand{
@@ -169,7 +173,6 @@ namespace BudgetPlanner.ViewModel
         private void AddOperation(object obj)
         {
             Operations.Add(_newOperation);
-
             string strOperationSum = $"{OperationSum}".Replace(',', '.');
             bd.ExecuteQuery($"INSERT INTO Operations(operationType, operationSum, category, comment) VALUES('{OperationType}', {strOperationSum}, '{Category}', '{Comment}')");
 
