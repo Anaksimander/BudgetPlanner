@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using BudgetPlanner.ViewModel;
 
 namespace BudgetPlanner.Model
 {
@@ -34,7 +35,8 @@ namespace BudgetPlanner.Model
             }
             set
             {
-                _operationType = value;
+
+                _operationType = value.TrimEnd();
                 OnPropertyChanged();
             }
         }
@@ -56,7 +58,7 @@ namespace BudgetPlanner.Model
             }
             set
             {
-                _category = value;
+                _category = value.TrimEnd();
                 OnPropertyChanged();
             }
         }
@@ -67,7 +69,7 @@ namespace BudgetPlanner.Model
             }
             set
             {
-                _comment = value;
+                _comment = value.TrimEnd();
                 OnPropertyChanged();
             }
         }

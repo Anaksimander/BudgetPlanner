@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:BudgetPlanner"
+    xmlns:l="using:BudgetPlanner.Converters"
     xmlns:vm="using:BudgetPlanner.ViewModel"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -35,6 +36,7 @@
             <Setter Property="Margin" Value="20 0"/>
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
+        <l:ConverterDecimal x:Key="DecimalToString"/>
     </Page.Resources>
 
     <ScrollViewer>
@@ -49,7 +51,6 @@
                         <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="3*"/>
                         <ColumnDefinition Width="4*"/>
-                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock
                         Style="{StaticResource baseBlock}"
@@ -67,12 +68,26 @@
                         Style="{StaticResource baseBlock}"
                         Grid.Column="3"
                         Text="Комментарий"/>
+                    
                 </Grid>
             </Border>
+            
+            <Button
+                Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                Command="{Binding SaveCommand}"
+                CommandParameter="{Binding SelectedOperation}"
+                Grid.Column="4"
+                FontFamily="Segoe MDL2 Assets" 
+                Content="&#xE74E;"
+                HorizontalAlignment="Right"
+                Margin="10 5 20 10"
+                FontSize="30"/>
 
-
-            <ListView ItemsSource="{Binding Operations}"
-                  HorizontalAlignment="Stretch">
+            <ListView 
+                SelectedItem="{Binding SelectedOperation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Name="listOperations"
+                ItemsSource="{Binding Operations}"
+                HorizontalAlignment="Stretch">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -92,7 +107,6 @@
                                     <ColumnDefinition Width="2*"/>
                                     <ColumnDefinition Width="3*"/>
                                     <ColumnDefinition Width="4*"/>
-                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <ComboBox
                                     Grid.Column="0"
@@ -108,12 +122,14 @@
                                     TextChanging="SumBox_TextChanging"
                                     Grid.Column="1"
                                     Text="{Binding OperationSum, Mode=TwoWay, 
+                                    Converter={StaticResource DecimalToString},
                                     UpdateSourceTrigger=PropertyChanged}"
                                     FontWeight="SemiBold"/>
                                 <TextBox
                                     Grid.Column="2"
                                     MaxLength="50"
-                                    Text="{Binding Category, Mode=TwoWay,                                
+                                    Text="{Binding Category, Mode=TwoWay,
+                                
                                     UpdateSourceTrigger=PropertyChanged}"
                                     FontWeight="SemiBold"
                                     TextWrapping="Wrap"
@@ -126,14 +142,7 @@
                                     TextWrapping="Wrap"
                                     ScrollViewer.VerticalScrollBarVisibility="Auto"
                                     TextAlignment="Left"/>
-                                <Button
-                                    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                                    Grid.Column="4"
-                                    FontFamily="Segoe MDL2 Assets" 
-                                    Content="&#xE74E;"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    FontSize="20"/>
+                                
                             </Grid>
                         </Border>
                     </DataTemplate>

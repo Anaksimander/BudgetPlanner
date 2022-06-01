@@ -17,6 +17,7 @@ namespace BudgetPlanner.ViewModel
         DataBaseWorker bd;
 
         private OperationModel _newOperation;
+        private OperationModel _selectedOperation;
         public OperationModel NewOperation
         {
             get
@@ -26,6 +27,19 @@ namespace BudgetPlanner.ViewModel
             set
             {
                 _newOperation = value;
+                OnPropertyChanged();
+                AddCommand.RaisCanExecuteChanged();
+            }
+        }
+        public OperationModel SelectedOperation
+        {
+            get
+            {
+                return _selectedOperation;
+            }
+            set
+            {
+                _selectedOperation = value;
                 OnPropertyChanged();
                 AddCommand.RaisCanExecuteChanged();
             }
@@ -89,7 +103,9 @@ namespace BudgetPlanner.ViewModel
         public OperationViewModel()
         {
             AddCommand = new BaseCommand(AddOperation, CanAddOperation);
+            SaveCommand = new BaseCommand(SaveOperation, CanSaveOperation);
             NewOperation = new OperationModel();
+            _selectedOperation = new OperationModel();
             //Operations = new ObservableCollection<OperationModel>
             //{
             //    new OperationModel {OperationType="доход", OperationSum=1000, Category="заработная плата", Comment= "Для уведомления системы об изменениях свойств модель" },
@@ -134,6 +150,22 @@ namespace BudgetPlanner.ViewModel
             get;
         }
 
+        private void SaveOperation(object obj)
+        {
+            OperationModel item = (OperationModel)obj;
+            string strOperationSum = $"{item.OperationSum}".Replace(',', '.');
+            bd.ExecuteQuery($"UPDATE Operations SET operationType = '{item.OperationType}', operationSum = {strOperationSum}, category = '{item.Category}', comment = '{item.Comment}' WHERE operationId = {item.OperationId}");
+        }
+        private bool CanSaveOperation(object obj)
+        {
+            OperationModel item = (OperationModel)obj;
+            if (obj == null || item.Category == null || item.OperationSum == null || item.OperationType == null ||
+                            item.Category == "" || item.OperationType == "")
+                return false;
+            else
+                return true;
+        }
+
         private void AddOperation(object obj)
         {
             Operations.Add(_newOperation);
@@ -154,9 +186,7 @@ namespace BudgetPlanner.ViewModel
                             NewOperation.Category == "" || NewOperation.OperationType == "")
                 return false;
             else
-            {
                 return true;
-            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
