@@ -23,7 +23,8 @@
 
 ## Server
 + В качестве базы данных используется Sqlite
-+ Строка для подключения - если ошибка при записи, то нет прав на запись в Operations.db по пути BudgetPlanner\BudgetPlanner\bin\x86\Debug\AppX. Нужно изменить права в свойствах. Долго же до меня доходило.
++ Если ошибка при записи, то нет прав на запись в Operations.db по пути BudgetPlanner\BudgetPlanner\bin\x86\Debug\AppX. Нужно изменить права в свойствах. Долго же до меня доходило.
+  ![](https://github.com/Anaksimander/BudgetPlanner/blob/master/BudgetPlanner/PresentProject/5.png?raw=true)
 
 ## Недостатки и трудности 
 Как по мне недостатоков очень много, так как это мой первый проект на UWP:
