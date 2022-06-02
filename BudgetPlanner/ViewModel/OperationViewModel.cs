@@ -10,6 +10,7 @@ using BudgetPlanner.Model;
 using BudgetPlanner;
 
 
+
 namespace BudgetPlanner.ViewModel
 {
     public class OperationViewModel : INotifyPropertyChanged
@@ -107,8 +108,6 @@ namespace BudgetPlanner.ViewModel
             bd = new DataBaseWorker();
             try
             {
-                bd.OpentConection();
-
                 List<string[]> list = bd.ExecuteQuery($"SELECT operationId, operationType, operationSum, category, comment FROM Operations", 5);
 
                 if (list != null)
@@ -155,7 +154,7 @@ namespace BudgetPlanner.ViewModel
         {
             OperationModel item = (OperationModel)obj;
             string strOperationSum = $"{item.OperationSum}".Replace(',', '.');
-            bd.ExecuteQuery($"UPDATE Operations SET operationType = '{item.OperationType}', operationSum = {strOperationSum}, category = '{item.Category}', comment = '{item.Comment}' WHERE operationId = {item.OperationId}");
+            bd.ExecuteNonQuery($"UPDATE Operations SET operationType = '{item.OperationType}', operationSum = {strOperationSum}, category = '{item.Category}', comment = '{item.Comment}' WHERE operationId = {item.OperationId}");
         }
         private bool CanSaveOperation(object obj)
         {
@@ -171,7 +170,7 @@ namespace BudgetPlanner.ViewModel
         {
             Operations.Add(_newOperation);
             string strOperationSum = $"{OperationSum}".Replace(',', '.');
-            bd.ExecuteQuery($"INSERT INTO Operations(operationType, operationSum, category, comment) VALUES('{OperationType}', {strOperationSum}, '{Category}', '{Comment}')");
+            bd.ExecuteNonQuery($"INSERT INTO Operations(operationType, operationSum, category, comment) VALUES('{OperationType}', {strOperationSum}, '{Category}', '{Comment}')");
 
             //очищаем поля окна
             NewOperation = new OperationModel();
