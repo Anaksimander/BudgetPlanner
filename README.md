@@ -27,16 +27,16 @@
 Если ошибка при записи, то нет прав на запись в Operations.db по пути BudgetPlanner\BudgetPlanner\bin\x86\Debug\AppX. Нужно изменить права в свойствах. Долго же до меня доходило.
 
 нажать на кнопку дополнительно
-![](https://github.com/Anaksimander/BudgetPlanner/blob/master/BudgetPlanner/PresentProject/5.png?raw=true)
+![](https://github.com/Anaksimander/BudgetPlanner/blob/master/BudgetPlanner/PresentProject/5.PNG?raw=true)
 
 
 отключить наследование без удаления 
-![](https://github.com/Anaksimander/BudgetPlanner/blob/master/BudgetPlanner/PresentProject/6.png?raw=true)
+![](https://github.com/Anaksimander/BudgetPlanner/blob/master/BudgetPlanner/PresentProject/6.PNG?raw=true)
 
 и изменить досуп у пользователей - в моем случае было достаточн оизменить доступ у этих двух пользователей
 
-![](https://github.com/Anaksimander/BudgetPlanner/blob/master/BudgetPlanner/PresentProject/8.png?raw=true)
-![](https://github.com/Anaksimander/BudgetPlanner/blob/master/BudgetPlanner/PresentProject/9.png?raw=true)
+![](https://github.com/Anaksimander/BudgetPlanner/blob/master/BudgetPlanner/PresentProject/8.PNG?raw=true)
+![](https://github.com/Anaksimander/BudgetPlanner/blob/master/BudgetPlanner/PresentProject/9.PNG?raw=true)
 
 
 ## Недостатки и трудности 
