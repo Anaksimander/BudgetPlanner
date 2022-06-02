@@ -45,7 +45,7 @@
                 <ComboBox 
                     Name="operationTypeList" 
                     PlaceholderText="Выберите тип операции"
-                    ItemTemplateSelector="{Binding OperationType, Mode=TwoWay, 
+                    SelectedItem="{Binding OperationType, Mode=TwoWay, 
                     UpdateSourceTrigger=PropertyChanged}">
                     <x:String>доход</x:String>
                     <x:String>расход</x:String>

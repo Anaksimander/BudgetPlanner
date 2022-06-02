@@ -52,12 +52,9 @@ namespace BudgetPlanner.ViewModel
             }
             set
             {
-                if(value.Length <= 10)
-                {
-                    NewOperation.OperationType = value;
-                    OnPropertyChanged("OperationType");
-                    AddCommand.RaisCanExecuteChanged();
-                }
+                NewOperation.OperationType = value;
+                OnPropertyChanged("OperationType");
+                AddCommand.RaisCanExecuteChanged();
             }
         }
         public decimal? OperationSum
