@@ -26,14 +26,16 @@ namespace BudgetPlanner
                 command.CommandText = "SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'Operations';";
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
-                    reader.Close();
+                    
                     if (!reader.HasRows)
                     {
+                        reader.Close();
                         command.CommandText = "CREATE TABLE Operations(operationId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
                         " operationType TEXT NOT NULL, operationSum MONEY NOT NULL, category TEXT NOT NULL, comment TEXT NOT NULL)";
                         command.ExecuteNonQuery();
-                    }
-                } 
+                    }else
+                        reader.Close();
+                }
             }
         }
 

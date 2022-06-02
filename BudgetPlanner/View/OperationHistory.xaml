@@ -1,4 +1,4 @@
-﻿<Page
+﻿<UserControl
     x:Class="BudgetPlanner.View.OperationHistory"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -15,7 +15,7 @@
         <vm:OperationViewModel/>
     </Page.DataContext>-->
 
-    <Page.Resources>
+    <UserControl.Resources>
         <Style TargetType="TextBlock" x:Key="baseBlock">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
@@ -37,7 +37,7 @@
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
         <l:ConverterDecimal x:Key="DecimalToString"/>
-    </Page.Resources>
+    </UserControl.Resources>
 
     <ScrollViewer>
         <StackPanel>
@@ -162,4 +162,4 @@
             </ListView>
         </StackPanel>
     </ScrollViewer>
-</Page>
+</UserControl>

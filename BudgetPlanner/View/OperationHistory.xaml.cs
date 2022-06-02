@@ -22,7 +22,7 @@ namespace BudgetPlanner.View
     /// <summary>
     /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
     /// </summary>
-    public sealed partial class OperationHistory : Page
+    public sealed partial class OperationHistory : UserControl
     {
         public OperationHistory()
         {
@@ -30,12 +30,12 @@ namespace BudgetPlanner.View
 
 
         }
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            if(e.Parameter is OperationViewModel operationViewModel)
-                this.DataContext = operationViewModel;
-            base.OnNavigatedTo(e);
-        }
+        //protected override void OnNavigatedTo(NavigationEventArgs e)
+        //{
+        //    if(e.Parameter is OperationViewModel operationViewModel)
+        //        this.DataContext = operationViewModel;
+        //    base.OnNavigatedTo(e);
+        //}
 
         ///уверен что это делается как-то элементарно - но я не смог понять как сделать валидатор как в wpf
         private void SumBox_TextChanging(TextBox sender, TextBoxTextChangingEventArgs args)

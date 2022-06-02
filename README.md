@@ -23,8 +23,21 @@
 
 ## Server
 + В качестве базы данных используется Sqlite
-+ Если ошибка при записи, то нет прав на запись в Operations.db по пути BudgetPlanner\BudgetPlanner\bin\x86\Debug\AppX. Нужно изменить права в свойствах. Долго же до меня доходило.
-  ![](https://github.com/Anaksimander/BudgetPlanner/blob/master/BudgetPlanner/PresentProject/5.png?raw=true)
+  
+Если ошибка при записи, то нет прав на запись в Operations.db по пути BudgetPlanner\BudgetPlanner\bin\x86\Debug\AppX. Нужно изменить права в свойствах. Долго же до меня доходило.
+
+нажать на кнопку дополнительно
+![](https://github.com/Anaksimander/BudgetPlanner/blob/master/BudgetPlanner/PresentProject/5.png?raw=true)
+
+
+отключить наследование без удаления 
+![](https://github.com/Anaksimander/BudgetPlanner/blob/master/BudgetPlanner/PresentProject/6.png?raw=true)
+
+и изменить досуп у пользователей - в моем случае было достаточн оизменить доступ у этих двух пользователей
+
+![](https://github.com/Anaksimander/BudgetPlanner/blob/master/BudgetPlanner/PresentProject/8.png?raw=true)
+![](https://github.com/Anaksimander/BudgetPlanner/blob/master/BudgetPlanner/PresentProject/9.png?raw=true)
+
 
 ## Недостатки и трудности 
 Как по мне недостатоков очень много, так как это мой первый проект на UWP:

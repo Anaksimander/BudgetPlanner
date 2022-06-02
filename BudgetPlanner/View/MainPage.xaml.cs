@@ -23,39 +23,27 @@ namespace BudgetPlanner.View
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        OperationHistory historyControl;
+        AddingOperation addingControl;
         public MainPage()
         {
             this.InitializeComponent();
 
             DataContext = new OperationViewModel();
-            // по умолчанию открываем страницу
-            myFrame.Navigate(typeof(OperationHistory), DataContext);
-            TitleTextBlock.Text = "История";
-        }
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (history.IsSelected)
-            {
-                myFrame.Navigate(typeof(OperationHistory), DataContext);
-                TitleTextBlock.Text = "История";
-            }
-            else if (adding.IsSelected)
-            {
-                myFrame.Navigate(typeof(AddingOperation), DataContext);
-                TitleTextBlock.Text = "Добавить";
-            }
+            historyControl = new OperationHistory();
+            addingControl = new AddingOperation();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            if (e.Parameter is OperationViewModel operationViewModel)
-                this.DataContext = operationViewModel;
-            base.OnNavigatedTo(e);
-        }
 
-        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
+        private void nvAll_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
-            mySplitView.IsPaneOpen = !mySplitView.IsPaneOpen;
+            if (nvAll.Content is AddingOperation)
+                nvAll.Content = historyControl;
+            else
+                nvAll.Content = addingControl;
+
+            addItem.IsEnabled = !addItem.IsEnabled;
+            historyItem.IsEnabled = !historyItem.IsEnabled;
         }
     }
 }
