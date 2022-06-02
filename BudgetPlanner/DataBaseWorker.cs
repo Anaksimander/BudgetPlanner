@@ -15,7 +15,26 @@ namespace BudgetPlanner
         private readonly string connectionString;
         public DataBaseWorker()
         {
-            connectionString = @"Data Source=Operations.db;Version=3;Mode=ReadWrite;";
+            connectionString = @"Data Source=Operations.db;Version=3;Mode=ReadWriteCreate;";
+
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                SQLiteCommand command = new SQLiteCommand();
+                command.Connection = connection;
+
+                command.CommandText = "SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'Operations';";
+                using (SQLiteDataReader reader = command.ExecuteReader())
+                {
+                    reader.Close();
+                    if (!reader.HasRows)
+                    {
+                        command.CommandText = "CREATE TABLE Operations(operationId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
+                        " operationType TEXT NOT NULL, operationSum MONEY NOT NULL, category TEXT NOT NULL, comment TEXT NOT NULL)";
+                        command.ExecuteNonQuery();
+                    }
+                } 
+            }
         }
 
         /// <summary>
