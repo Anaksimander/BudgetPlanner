@@ -22,18 +22,11 @@ namespace BudgetPlanner.View
     /// <summary>
     /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
     /// </summary>
-    public sealed partial class AddingOperation : Page
+    public sealed partial class AddingOperation : UserControl
     {
         public AddingOperation()
         {
             this.InitializeComponent();
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            if (e.Parameter is OperationViewModel operationViewModel)
-                this.DataContext = operationViewModel;
-            base.OnNavigatedTo(e);
         }
 
         ///уверен что это делается как-то элементарно - но я не смог понять как сделать валидатор как в wpf

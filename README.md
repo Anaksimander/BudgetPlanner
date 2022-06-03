@@ -22,9 +22,28 @@
 + Редактирование уже записанных операций.
 
 ## Server
-+ В качестве базы данных используется Sqlite
-+ Если ошибка при записи, то нет прав на запись в Operations.db по пути BudgetPlanner\BudgetPlanner\bin\x86\Debug\AppX. Нужно изменить права в свойствах. Долго же до меня доходило.
-  ![](https://github.com/Anaksimander/BudgetPlanner/blob/master/BudgetPlanner/PresentProject/5.png?raw=true)
++ В качестве базы данных используется Sqlite. При использовании локальной бд в виде файла при любой бд выскакивает ошибка снизу.
+  
+Если ошибка при записи, то нет прав на запись в Operations.db.
+Скорее всего эта ошибка будет, так как при первом запуске проекта, в BudgetPlanner\BudgetPlanner\bin\x86\Debug\AppX создается копия Operations.db в котором устанавливаются права доступа пользователям только на чтение. Следовательно нужно изменить права в свойствах (долго же до меня доходило).
+![](https://github.com/Anaksimander/BudgetPlanner/blob/master/BudgetPlanner/PresentProject/5.png?raw=true)
+
+
+## Изменение доступа
+### Если вы уже запустили приложение, тогда по пути по пути BudgetPlanner\BudgetPlanner\bin\x86\Debug\AppX открываем открываем свойство Operations.db
+
+![](https://github.com/Anaksimander/BudgetPlanner/blob/master/BudgetPlanner/PresentProject/6.png?raw=true)
+
+### Жмем дополнительно 
+
+![](https://github.com/Anaksimander/BudgetPlanner/blob/master/BudgetPlanner/PresentProject/7.png?raw=true)
+
+### Отключаем наследование без удаления 
+![](https://github.com/Anaksimander/BudgetPlanner/blob/master/BudgetPlanner/PresentProject/8.png?raw=true)
+
+### И изменяем доступ у пользователей. Я изменил доступ только у двух неизвестных учетных записей. Но можно изменить у всех. 
+
+![](https://github.com/Anaksimander/BudgetPlanner/blob/master/BudgetPlanner/PresentProject/9.png?raw=true)
 
 ## Недостатки и трудности 
 Как по мне недостатоков очень много, так как это мой первый проект на UWP:
