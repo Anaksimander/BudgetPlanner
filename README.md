@@ -30,7 +30,7 @@
 
 
 ## Изменение доступа
-### Если вы уже запустили приложение, тогда по пути по пути BudgetPlanner\BudgetPlanner\bin\x86\Debug\AppX открываем открываем свойство Operations.db
+### Если вы уже запустили приложение, тогда закрываем его и по пути по пути BudgetPlanner\BudgetPlanner\bin\x86\Debug\AppX открываем  свойство Operations.db
 
 ![](https://github.com/Anaksimander/BudgetPlanner/blob/master/BudgetPlanner/PresentProject/6.PNG?raw=true)
 
