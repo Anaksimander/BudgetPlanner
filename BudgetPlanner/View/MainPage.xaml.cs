@@ -45,5 +45,16 @@ namespace BudgetPlanner.View
             addItem.IsEnabled = !addItem.IsEnabled;
             historyItem.IsEnabled = !historyItem.IsEnabled;
         }
+
+        private void nvAll_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+        {
+            if (nvAll.Content is AddingOperation)
+                nvAll.Content = historyControl;
+            else
+                nvAll.Content = addingControl;
+
+            addItem.IsEnabled = !addItem.IsEnabled;
+            historyItem.IsEnabled = !historyItem.IsEnabled;
+        }
     }
 }

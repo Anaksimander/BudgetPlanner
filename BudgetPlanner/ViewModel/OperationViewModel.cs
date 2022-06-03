@@ -133,9 +133,8 @@ namespace BudgetPlanner.ViewModel
             }
             catch (Exception ex)
             {
-
-                Console.WriteLine("неполучилось открыть бд");
                 Console.WriteLine(ex.Message);
+                throw ex;//тут должно быть всплывающее окно 
             }
             
             
@@ -154,7 +153,15 @@ namespace BudgetPlanner.ViewModel
         {
             OperationModel item = (OperationModel)obj;
             string strOperationSum = $"{item.OperationSum}".Replace(',', '.');
-            bd.ExecuteNonQuery($"UPDATE Operations SET operationType = '{item.OperationType}', operationSum = {strOperationSum}, category = '{item.Category}', comment = '{item.Comment}' WHERE operationId = {item.OperationId}");
+            try
+            {
+                bd.ExecuteNonQuery($"UPDATE Operations SET operationType = '{item.OperationType}', operationSum = {strOperationSum}, category = '{item.Category}', comment = '{item.Comment}' WHERE operationId = {item.OperationId}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;//тут должно быть всплывающее окно 
+            }
         }
         private bool CanSaveOperation(object obj)
         {
@@ -170,8 +177,16 @@ namespace BudgetPlanner.ViewModel
         {
             Operations.Add(_newOperation);
             string strOperationSum = $"{OperationSum}".Replace(',', '.');
-            bd.ExecuteNonQuery($"INSERT INTO Operations(operationType, operationSum, category, comment) VALUES('{OperationType}', {strOperationSum}, '{Category}', '{Comment}')");
+            try
+            {
+                bd.ExecuteNonQuery($"INSERT INTO Operations(operationType, operationSum, category, comment) VALUES('{OperationType}', {strOperationSum}, '{Category}', '{Comment}')");
 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;//тут должно быть всплывающее окно 
+            }
             //очищаем поля окна
             NewOperation = new OperationModel();
             OnPropertyChanged("OperationType");

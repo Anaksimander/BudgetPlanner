@@ -13,7 +13,10 @@
             ItemInvoked="nvAll_ItemInvoked"
             x:Name="nvAll"
             PaneDisplayMode="LeftCompact"
-            IsSettingsVisible="False">
+            
+            IsSettingsVisible="False" 
+            BackRequested="nvAll_BackRequested" 
+            IsPaneOpen="False" IsBackEnabled="True" >
             <NavigationView.MenuItems>
                 <NavigationViewItem 
                     x:Name="historyItem"

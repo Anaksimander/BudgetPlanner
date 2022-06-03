@@ -15,28 +15,7 @@ namespace BudgetPlanner
         private readonly string connectionString;
         public DataBaseWorker()
         {
-            connectionString = @"Data Source=Operations.db;Version=3;Mode=ReadWriteCreate;";
-
-            using (var connection = new SQLiteConnection(connectionString))
-            {
-                connection.Open();
-                SQLiteCommand command = new SQLiteCommand();
-                command.Connection = connection;
-
-                command.CommandText = "SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'Operations';";
-                using (SQLiteDataReader reader = command.ExecuteReader())
-                {
-                    
-                    if (!reader.HasRows)
-                    {
-                        reader.Close();
-                        command.CommandText = "CREATE TABLE Operations(operationId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
-                        " operationType TEXT NOT NULL, operationSum MONEY NOT NULL, category TEXT NOT NULL, comment TEXT NOT NULL)";
-                        command.ExecuteNonQuery();
-                    }else
-                        reader.Close();
-                }
-            }
+            connectionString = @"Data Source=Operations.db;Version=3;Journal Mode=Off;";
         }
 
         /// <summary>
@@ -48,8 +27,8 @@ namespace BudgetPlanner
             using (var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                SQLiteCommand command = new SQLiteCommand(query, connection);
-                using (SQLiteDataReader reader = command.ExecuteReader())
+                var command = new SQLiteCommand(query, connection);
+                using (var reader = command.ExecuteReader())
                 {
                     List<string[]> response = new List<string[]>();
                     if (reader.HasRows) // если есть данные
@@ -63,60 +42,33 @@ namespace BudgetPlanner
                                 response[response.Count - 1][i] = reader[i].ToString();
                             }
                         }
+                        
                         reader.Close();
+                        connection.Close();
                         return response;
                     }
                     else
                     {
+                        
                         reader.Close();
+                        connection.Close();
                         return null;
                     }
                 }
-            }
-        }
-
-        /// <summary>
-        /// запрос на одну строку таблицы
-        /// </summary>
-        public List<string> ExecuteQueryRow(string query, int col)
-        {
-            using (var connection = new SQLiteConnection(connectionString))
-            {
-                connection.Open();
-                SQLiteCommand command = new SQLiteCommand(query, connection);
-                using (SQLiteDataReader reader = command.ExecuteReader())
-                {
-                    List<string> response = new List<string>();
-                    if (reader.HasRows) // если есть данные
-                    {
-                        while (reader.Read())
-                        {
-                            for (int i = 0; i < col; i++)
-                            {
-                                response.Add(reader[i].ToString());
-                            }
-                        }
-                        reader.Close();
-                        return response;
-                    }
-                    else
-                    {
-                        reader.Close();
-                        return null;
-                    }
-                }
+                
             }
         }
 
         public void ExecuteNonQuery(string query)
         {
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SQLiteConnection(connectionString, true))
             {
                 connection.Open();
-                SQLiteCommand command = new SQLiteCommand(query, connection);
+                var command = new SQLiteCommand(query, connection);
                 command.ExecuteNonQuery();
-
+                connection.Close();
             }
+
         }
 
     }
