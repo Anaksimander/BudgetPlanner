@@ -136,8 +136,6 @@ namespace BudgetPlanner.ViewModel
                 Console.WriteLine(ex.Message);
                 throw ex;//тут должно быть всплывающее окно 
             }
-            
-            
         }
 
         public BaseCommand AddCommand{
